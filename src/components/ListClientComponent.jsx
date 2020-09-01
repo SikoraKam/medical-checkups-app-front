@@ -15,22 +15,21 @@ class ListClientComponent extends Component {
 
     }
 
+    componentDidMount() {
+        ClientService.getClients().then(res => {
+            this.setState({clients: res.data});
+        });
+        this.props.history.push('/clients');
+    }
+
     editClient(id) {
         this.props.history.push(`/update-client/${id}`);
-
     }
 
     deleteClient(id){
         ClientService.deleteClient(id).then(res => {
             this.setState({client: this.state.clients.filter(client => client.id !== id)});
         });
-    }
-
-    componentDidMount() {
-        ClientService.getClients().then(res => {
-            this.setState({clients: res.data});
-        });
-        this.props.history.push('/clients');
     }
 
     addClient(){
