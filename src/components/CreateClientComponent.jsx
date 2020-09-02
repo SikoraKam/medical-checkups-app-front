@@ -1,17 +1,16 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 import ClientService from "../services/ClientService";
-const bcrypt = require('bcryptjs')
+const bcrypt = require("bcryptjs");
 
 class CreateClientComponent extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
-            name: '',
-            lastname: '',
-            password: '',
-            email: ''
-        }
+            name: "",
+            lastname: "",
+            password: "",
+            email: "",
+        };
 
         this.changeNameHandler = this.changeNameHandler.bind(this);
         this.changeLastNameHandler = this.changeLastNameHandler.bind(this);
@@ -20,36 +19,41 @@ class CreateClientComponent extends Component {
         this.saveClient = this.saveClient.bind(this);
     }
 
-    changeNameHandler(event){
-        this.setState({name: event.target.value});
+    changeNameHandler(event) {
+        this.setState({ name: event.target.value });
     }
-    changeLastNameHandler(event){
-        this.setState({lastname: event.target.value});
+    changeLastNameHandler(event) {
+        this.setState({ lastname: event.target.value });
     }
-    changeEmailHandler(event){
-        this.setState({email: event.target.value});
+    changeEmailHandler(event) {
+        this.setState({ email: event.target.value });
     }
-    changePasswordHandler(event){
-        this.setState({password: event.target.value});
+    changePasswordHandler(event) {
+        this.setState({ password: event.target.value });
     }
 
-    encodePassword(password){
+    encodePassword(password) {
         return bcrypt.hashSync(password, 8);
     }
 
-
-    saveClient(event){
+    saveClient(event) {
         event.preventDefault();
-        let client = {name: this.state.name, lastname: this.state.lastname, password: this.encodePassword(this.state.password), email: this.state.email, status: 'Verfied'};
+        let client = {
+            name: this.state.name,
+            lastname: this.state.lastname,
+            password: this.encodePassword(this.state.password),
+            email: this.state.email,
+            status: "Verfied",
+        };
         console.log(JSON.stringify(client));
 
-        ClientService.createClient(client).then(res => {
-            this.props.history.push('/clients');
-        })
+        ClientService.createClient(client).then((res) => {
+            this.props.history.push("/clients");
+        });
     }
 
-    cancel(){
-        this.props.history.push('/clients');
+    cancel() {
+        this.props.history.push("/clients");
     }
 
     render() {
@@ -63,20 +67,55 @@ class CreateClientComponent extends Component {
                                 <form>
                                     <div className="form-group">
                                         <label>First Name: </label>
-                                        <input placeholder="First Name" name="name" className="form-control"
-                                            value={this.state.name} onChange={this.changeNameHandler}/>
+                                        <input
+                                            placeholder="First Name"
+                                            name="name"
+                                            className="form-control"
+                                            value={this.state.name}
+                                            onChange={this.changeNameHandler}
+                                        />
                                         <label>Last Name: </label>
-                                        <input placeholder="Last Name" name="lastname" className="form-control"
-                                               value={this.state.lastname} onChange={this.changeLastNameHandler}/>
+                                        <input
+                                            placeholder="Last Name"
+                                            name="lastname"
+                                            className="form-control"
+                                            value={this.state.lastname}
+                                            onChange={
+                                                this.changeLastNameHandler
+                                            }
+                                        />
                                         <label>Password: </label>
-                                        <input placeholder="password" name="password" className="form-control"
-                                               value={this.state.password} onChange={this.changePasswordHandler}/>
+                                        <input
+                                            placeholder="password"
+                                            name="password"
+                                            className="form-control"
+                                            value={this.state.password}
+                                            onChange={
+                                                this.changePasswordHandler
+                                            }
+                                        />
                                         <label>Email: </label>
-                                        <input placeholder="Email" name="email" className="form-control"
-                                               value={this.state.email} onChange={this.changeEmailHandler}/>
+                                        <input
+                                            placeholder="Email"
+                                            name="email"
+                                            className="form-control"
+                                            value={this.state.email}
+                                            onChange={this.changeEmailHandler}
+                                        />
                                     </div>
-                                    <button className="btn btn-success" onClick={this.saveClient}>Save</button>
-                                    <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>
+                                    <button
+                                        className="btn btn-success"
+                                        onClick={this.saveClient}
+                                    >
+                                        Save
+                                    </button>
+                                    <button
+                                        className="btn btn-danger"
+                                        onClick={this.cancel.bind(this)}
+                                        style={{ marginLeft: "10px" }}
+                                    >
+                                        Cancel
+                                    </button>
                                 </form>
                             </div>
                         </div>

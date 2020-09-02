@@ -1,36 +1,28 @@
-import React, {Component} from 'react';
-import CheckupService from "../services/CheckupService"
+import React, { Component } from "react";
+import CheckupService from "../services/CheckupService";
 
 class ListCheckupsComponent extends Component {
-
     constructor(props) {
         super(props);
 
         this.state = {
-            clients: []
-        }
+            clients: [],
+        };
     }
 
     componentDidMount() {
-        CheckupService.getCheckups().then(res => {
-            this.state({checkups: res.data});
+        CheckupService.getCheckups().then((res) => {
+            this.state({ checkups: res.data });
         });
-
-        s
-        this.props.history.push('/checkups')
+        this.props.history.push("/checkups");
     }
 
     editCheckup(id) {
-        this.props.history.push(`/update-checkup/${id}`)
+        this.props.history.push(`/update-checkup/${id}`);
     }
 
-
     render() {
-        return (
-            <div>
-
-            </div>
-        );
+        return <div></div>;
     }
 }
 

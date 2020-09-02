@@ -1,20 +1,19 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 import CheckupService from "../services/CheckupService";
 
 class ViewCheckupComponent extends Component {
-
     constructor(props) {
         super(props);
 
         this.state = {
             id: this.props.match.params.id,
-            checkup: {}
-        }
+            checkup: {},
+        };
     }
 
     componentDidMount() {
-        CheckupService.getCheckupById(this.state.id).then(res => {
-            this.setState({checkup: res.data})
+        CheckupService.getCheckupById(this.state.id).then((res) => {
+            this.setState({ checkup: res.data });
         });
     }
 

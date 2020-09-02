@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 import ClientService from "../services/ClientService";
 
 class ViewClientComponent extends Component {
@@ -7,13 +7,13 @@ class ViewClientComponent extends Component {
 
         this.state = {
             id: this.props.match.params.id,
-            client: {}
-        }
+            client: {},
+        };
     }
 
     componentDidMount() {
-        ClientService.getClientById(this.state.id).then(res => {
-            this.setState({client: res.data});
+        ClientService.getClientById(this.state.id).then((res) => {
+            this.setState({ client: res.data });
         });
     }
 
@@ -37,7 +37,6 @@ class ViewClientComponent extends Component {
                         </div>
                     </div>
                 </div>
-
             </div>
         );
     }
