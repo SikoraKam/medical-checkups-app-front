@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ClientService from "../services/ClientService";
+import ViewAllClientsCheckups from "./ViewAllClientsCheckups";
 
 class ViewClientComponent extends Component {
     constructor(props) {
@@ -36,6 +37,11 @@ class ViewClientComponent extends Component {
                             <div>{this.state.client.email}</div>
                         </div>
                     </div>
+                </div>
+                <div>
+                    {console.log(this.state.client)}
+                    <ViewAllClientsCheckups clientId={this.state.client.id} />
+                    TODO
                 </div>
             </div>
         );

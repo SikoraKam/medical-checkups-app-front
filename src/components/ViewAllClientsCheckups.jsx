@@ -1,25 +1,27 @@
 import React, { Component } from "react";
 import CheckupService from "../services/CheckupService";
 
-class ListCheckupsComponent extends Component {
+class ViewAllClientsCheckups extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
+            clientId: this.props.clientId,
             checkups: [],
         };
+        console.log(this.props);
         this.addCheckup = this.addCheckup.bind(this);
         this.editCheckup = this.editCheckup.bind(this);
         this.deleteCheckup = this.deleteCheckup.bind(this);
         this.viewCheckup = this.viewCheckup.bind(this);
-        this.viewClient = this.viewClient.bind(this);
     }
 
     componentDidMount() {
-        CheckupService.getCheckups().then((res) => {
-            this.setState({ checkups: res.data });
-        });
-        this.props.history.push("/checkups");
+        CheckupService.getAllCheckupsByClientId(this.state.clientId).then(
+            (res) => {
+                this.setState({ checkups: res.data });
+            }
+        );
     }
 
     editCheckup(id) {
@@ -43,9 +45,6 @@ class ListCheckupsComponent extends Component {
     viewCheckup(id) {
         this.props.history.push(`/view-checkup/${id}`);
     }
-    viewClient(id) {
-        this.props.history.push(`/view-client/${id}`);
-    }
 
     render() {
         return (
@@ -64,7 +63,6 @@ class ListCheckupsComponent extends Component {
                         <thead className="thead-dark">
                             <tr>
                                 <th>Checkup ID</th>
-                                <th>Client ID</th>
                                 <th>Checkup Date</th>
                                 <th>Actions</th>
                             </tr>
@@ -74,7 +72,6 @@ class ListCheckupsComponent extends Component {
                             {this.state.checkups.map((checkup) => (
                                 <tr key={checkup.id}>
                                     <td>{checkup.id}</td>
-                                    <td>{checkup.client_Id}</td>
                                     <td>{checkup.date}</td>
 
                                     <td>
@@ -105,17 +102,6 @@ class ListCheckupsComponent extends Component {
                                         >
                                             View Checkup
                                         </button>
-                                        <button
-                                            style={{ marginLeft: "10px" }}
-                                            className="btn btn-warning"
-                                            onClick={() => {
-                                                this.viewClient(
-                                                    checkup.client_Id
-                                                );
-                                            }}
-                                        >
-                                            View Client
-                                        </button>
                                     </td>
                                 </tr>
                             ))}
@@ -127,4 +113,4 @@ class ListCheckupsComponent extends Component {
     }
 }
 
-export default ListCheckupsComponent;
+export default ViewAllClientsCheckups;

@@ -54,9 +54,10 @@ class ListClientComponent extends Component {
                     </button>
                 </div>
                 <div className="row">
-                    <table className="table table-striped table-bordered">
-                        <thead>
+                    <table className="table table-striped ">
+                        <thead className="thead-dark">
                             <tr>
+                                <th>Client ID</th>
                                 <th>Client First Name</th>
                                 <th>Client Last Name</th>
                                 <th>Client Email Name</th>
@@ -67,6 +68,7 @@ class ListClientComponent extends Component {
                         <tbody>
                             {this.state.clients.map((client) => (
                                 <tr key={client.id}>
+                                    <td>{client.id}</td>
                                     <td>{client.name}</td>
                                     <td>{client.lastname}</td>
                                     <td>{client.email}</td>
