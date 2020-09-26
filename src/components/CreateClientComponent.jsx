@@ -45,7 +45,6 @@ class CreateClientComponent extends Component {
             email: this.state.email,
             status: "Verfied",
         };
-        console.log(JSON.stringify(client));
 
         ClientService.createClient(client).then((res) => {
             this.props.history.push("/clients");

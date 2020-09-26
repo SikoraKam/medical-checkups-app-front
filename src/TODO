@@ -1,0 +1,2 @@
+change encoding password on server side during creating client from admin's CreateClientComponent
+change isLoaded to Suspense in ViewClientComponent

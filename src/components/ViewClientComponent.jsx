@@ -9,12 +9,13 @@ class ViewClientComponent extends Component {
         this.state = {
             id: this.props.match.params.id,
             client: {},
+            isLoaded: false,
         };
     }
 
     componentDidMount() {
         ClientService.getClientById(this.state.id).then((res) => {
-            this.setState({ client: res.data });
+            this.setState({ client: res.data, isLoaded: true });
         });
     }
 
@@ -39,9 +40,14 @@ class ViewClientComponent extends Component {
                     </div>
                 </div>
                 <div>
-                    {console.log(this.state.client)}
-                    <ViewAllClientsCheckups clientId={this.state.client.id} />
-                    TODO
+                    {/*Suspense in future instead of isLoaded*/}
+                    {this.state.isLoaded ? (
+                        <ViewAllClientsCheckups
+                            clientId={this.state.client.id}
+                        />
+                    ) : (
+                        ""
+                    )}
                 </div>
             </div>
         );

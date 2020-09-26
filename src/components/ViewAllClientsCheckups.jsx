@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import CheckupService from "../services/CheckupService";
+import { withRouter } from "react-router-dom";
 
 class ViewAllClientsCheckups extends Component {
     constructor(props) {
@@ -9,7 +10,6 @@ class ViewAllClientsCheckups extends Component {
             clientId: this.props.clientId,
             checkups: [],
         };
-        console.log(this.props);
         this.addCheckup = this.addCheckup.bind(this);
         this.editCheckup = this.editCheckup.bind(this);
         this.deleteCheckup = this.deleteCheckup.bind(this);
@@ -97,6 +97,7 @@ class ViewAllClientsCheckups extends Component {
                                             style={{ marginLeft: "10px" }}
                                             className="btn btn-success"
                                             onClick={() => {
+                                                console.log(checkup.id);
                                                 this.viewCheckup(checkup.id);
                                             }}
                                         >
@@ -113,4 +114,4 @@ class ViewAllClientsCheckups extends Component {
     }
 }
 
-export default ViewAllClientsCheckups;
+export default withRouter(ViewAllClientsCheckups);

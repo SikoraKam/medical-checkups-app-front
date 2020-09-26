@@ -10,6 +10,7 @@ class CreateCheckupComponent extends Component {
         };
         this.changeClient_IdHandler = this.changeClient_IdHandler.bind(this);
         this.changeDateHandler = this.changeDateHandler.bind(this);
+        this.saveCheckup = this.saveCheckup.bind(this);
     }
 
     changeDateHandler(event) {
@@ -18,6 +19,11 @@ class CreateCheckupComponent extends Component {
 
     changeClient_IdHandler(event) {
         this.setState({ client_Id: event.target.value });
+    }
+
+    saveCheckup(event) {
+        event.preventDefault();
+        let checkup = {};
     }
 
     render() {
