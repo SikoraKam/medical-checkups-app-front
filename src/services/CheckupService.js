@@ -16,8 +16,11 @@ class CheckupService {
         return axios.get(CLIENT_API_URL + "/" + clientId + "/checkups");
     }
 
-    createCheckup(checkup) {
-        return axios.post(CHECKUPS_API_URL, checkup);
+    createCheckupWithClientId(checkup, clientId) {
+        return axios.post(
+            CLIENT_API_URL + "/" + clientId + "/checkups",
+            checkup
+        );
     }
 
     updateCheckup(checkup, checkupId) {

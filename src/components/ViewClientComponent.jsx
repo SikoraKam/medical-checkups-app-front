@@ -16,7 +16,19 @@ class ViewClientComponent extends Component {
     componentDidMount() {
         ClientService.getClientById(this.state.id).then((res) => {
             this.setState({ client: res.data, isLoaded: true });
+            console.log(this.state.client);
         });
+    }
+
+    viewClientList() {
+        if (
+            this.state.client.roles[0].role === "ADMIN" ||
+            this.state.client.roles[0].role === "MANAGER"
+        ) {
+            this.props.history.push("/clients");
+        } else {
+            alert("you are not allowed to view this");
+        }
     }
 
     render() {
@@ -49,6 +61,13 @@ class ViewClientComponent extends Component {
                         ""
                     )}
                 </div>
+                <button
+                    onClick={() => {
+                        this.viewClientList();
+                    }}
+                >
+                    View list of clients
+                </button>
             </div>
         );
     }

@@ -11,6 +11,7 @@ import ViewClientComponent from "./components/ViewClientComponent";
 import ListCheckupsComponent from "./components/ListCheckupsComponent";
 import ViewCheckupComponent from "./components/ViewCheckupComponent";
 import ViewResultComponent from "./components/ViewResultComponent";
+import CreateCheckupComponent from "./components/CreateCheckupComponent";
 
 function App() {
     return (
@@ -45,6 +46,10 @@ function App() {
                         <Route
                             path="/view-checkup/:id"
                             component={ViewCheckupComponent}
+                        />
+                        <Route
+                            path="/add-checkup/:id"
+                            component={CreateCheckupComponent}
                         />
                         <Route
                             path="/view-results/:checkupId"

@@ -38,8 +38,8 @@ class ViewAllClientsCheckups extends Component {
         });
     }
 
-    addCheckup() {
-        this.props.history.push("/add-checkup");
+    addCheckup(clientId) {
+        this.props.history.push(`/add-checkup/${clientId}`);
     }
 
     viewCheckup(id) {
@@ -53,9 +53,9 @@ class ViewAllClientsCheckups extends Component {
                 <div className="row">
                     <button
                         className="btn btn-primary"
-                        onClick={this.addCheckup}
+                        onClick={() => this.addCheckup(this.state.clientId)}
                     >
-                        Add Checkup
+                        Add Checkup To This Client
                     </button>
                 </div>
                 <div className="row">
