@@ -1,4 +1,4 @@
 change encoding password on server side during creating client from admin's CreateClientComponent
 change isLoaded to Suspense in ViewClientComponent
 validate date in CreateCheckupComoponent
-authorize clientList
+authorize clientList - PrivateRoute zrobiony, jak sprawdzic kto wpisal url (przechowywac dane w localstorage po zalogowaniu?)
