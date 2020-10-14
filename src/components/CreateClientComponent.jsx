@@ -45,7 +45,6 @@ class CreateClientComponent extends Component {
             email: this.state.email,
             status: "Verfied",
         };
-
         ClientService.createClient(client).then((res) => {
             this.props.history.push("/clients");
         });
@@ -60,7 +59,7 @@ class CreateClientComponent extends Component {
             <div>
                 <div className="container">
                     <div className="row">
-                        <div className="card col=md-6 offset-md-3 offset-md-3">
+                        <div className="card col-md-6 offset-md-3 offset-md-3">
                             <h3 className="text-center">Add client</h3>
                             <div className="card-body">
                                 <form>
