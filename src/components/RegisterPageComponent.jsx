@@ -68,6 +68,44 @@ class RegisterPageComponent extends Component {
             );
         }
     }
+    email = (value) => {
+        if (!isEmail(value)) {
+            return (
+                <div className="alert alert-danger" role="alert">
+                    This is not a valid email.
+                </div>
+            );
+        }
+    };
+
+    vname = (value) => {
+        if (value.length < 3 || value.length > 20) {
+            return (
+                <div className="alert alert-danger" role="alert">
+                    The name must be between 3 and 20 characters.
+                </div>
+            );
+        }
+    };
+    vlastname = (value) => {
+        if (value.length < 3 || value.length > 20) {
+            return (
+                <div className="alert alert-danger" role="alert">
+                    The lastname must be between 3 and 20 characters.
+                </div>
+            );
+        }
+    };
+
+    vpassword = (value) => {
+        if (value.length < 5 || value.length > 40) {
+            return (
+                <div className="alert alert-danger" role="alert">
+                    The password must be between 5 and 40 characters.
+                </div>
+            );
+        }
+    };
 
     render() {
         const required = (value) => {
@@ -75,45 +113,6 @@ class RegisterPageComponent extends Component {
                 return (
                     <div className="alert alert-danger" role="alert">
                         This field is required!
-                    </div>
-                );
-            }
-        };
-
-        const email = (value) => {
-            if (!isEmail(value)) {
-                return (
-                    <div className="alert alert-danger" role="alert">
-                        This is not a valid email.
-                    </div>
-                );
-            }
-        };
-
-        const vname = (value) => {
-            if (value.length < 3 || value.length > 20) {
-                return (
-                    <div className="alert alert-danger" role="alert">
-                        The name must be between 3 and 20 characters.
-                    </div>
-                );
-            }
-        };
-        const vlastname = (value) => {
-            if (value.length < 3 || value.length > 20) {
-                return (
-                    <div className="alert alert-danger" role="alert">
-                        The lastname must be between 3 and 20 characters.
-                    </div>
-                );
-            }
-        };
-
-        const vpassword = (value) => {
-            if (value.length < 5 || value.length > 40) {
-                return (
-                    <div className="alert alert-danger" role="alert">
-                        The password must be between 5 and 40 characters.
                     </div>
                 );
             }
@@ -145,7 +144,7 @@ class RegisterPageComponent extends Component {
                                         placeholder="Name"
                                         value={this.state.name}
                                         onChange={this.changeNameHandler}
-                                        validations={[required, vname]}
+                                        validations={[required, this.vname]}
                                     />
                                 </div>
                                 <div className="form-group">
@@ -157,7 +156,7 @@ class RegisterPageComponent extends Component {
                                         placeholder="Last Name"
                                         value={this.state.lastname}
                                         onChange={this.changeLastNameHandler}
-                                        validations={[required, vlastname]}
+                                        validations={[required, this.vlastname]}
                                     />
                                 </div>
                                 <div className="form-group">
@@ -168,7 +167,7 @@ class RegisterPageComponent extends Component {
                                         name="email"
                                         value={this.state.email}
                                         onChange={this.changeEmailHandler}
-                                        validations={[required, email]}
+                                        validations={[required, this.email]}
                                     />
                                 </div>
 
@@ -179,8 +178,8 @@ class RegisterPageComponent extends Component {
                                         className="form-control"
                                         name="password"
                                         value={this.state.password}
-                                        onChange={this.changePasswordHandler()}
-                                        validations={[required, vpassword]}
+                                        onChange={this.changePasswordHandler}
+                                        validations={[required, this.vpassword]}
                                     />
                                 </div>
 

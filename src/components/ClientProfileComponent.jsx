@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import ClientService from "../services/ClientService";
-import ViewAllClientsCheckups from "./ViewAllClientsCheckups";
 import AuthService from "../services/AuthService";
+import ViewAllClientsCheckups from "./ViewAllClientsCheckups";
 
-class ViewClientComponent extends Component {
+class ClientProfileComponent extends Component {
     constructor(props) {
         super(props);
 
@@ -15,7 +15,7 @@ class ViewClientComponent extends Component {
     }
 
     componentDidMount() {
-        ClientService.getClientById(this.state.id).then((res) => {
+        AuthService.getActualClient().then((res) => {
             this.setState({ client: res.data, isLoaded: true });
             console.log(this.state.client);
         });
@@ -74,4 +74,4 @@ class ViewClientComponent extends Component {
     }
 }
 
-export default ViewClientComponent;
+export default ClientProfileComponent;
